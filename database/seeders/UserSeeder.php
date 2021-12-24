@@ -26,6 +26,10 @@ class UserSeeder extends Seeder
             'display_name' => 'izin pengguna'
         ]);
 
+         $kasir = Role::create([
+            'name' => 'kasir',
+            'display_name' => 'izin kasir'
+        ]);
 
         $useradmin = new User();
         $useradmin->name = 'Putri Perdana';
@@ -40,5 +44,19 @@ class UserSeeder extends Seeder
         $pengguna->password = Hash::make('12345678');
         $pengguna->save();
         $pengguna->attachRole($pengguna);
+
+        $userkasir1 = new User();
+        $userkasir1->name = 'Puper';
+        $userkasir1->email ='puper@gmail.com';
+        $userkasir1->password = Hash::make('12345678');
+        $userkasir1->save();
+        $userkasir1->attachRole($kasir);
+
+        $userkasir2 = new User();
+        $userkasir2->name = 'Sfena';
+        $userkasir2->email ='sfena@gmail.com';
+        $userkasir2->password = Hash::make('12345678');
+        $userkasir2->save();
+        $userkasir2->attachRole($kasir);
     }
 }

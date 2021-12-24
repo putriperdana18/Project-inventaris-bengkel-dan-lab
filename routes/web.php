@@ -45,3 +45,15 @@ Route::group(['prefix' => 'pengguna', 'middleware' => ['auth', 'role:pengguna']]
         return 'halaman profile pengguna';
     });
 });
+
+// hanya untuk role admin atau kasir
+Route::group(['prefix' => 'pembelian', 'middleware' => ['auth', 'role:admin|kasir']], function(){
+    Route::get('/', function(){
+        return 'halaman pembelian';
+    });
+
+    Route::get('laporan', function(){
+        return 'halaman laporan pengguna';
+    });
+});
+

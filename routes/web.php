@@ -58,7 +58,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // });
 
 // hanya contoh 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
+Route::group(['prefix'=> 'admin', 'middleware' => ['auth']], function(){
     Route::get('buku', function(){
         return view ('buku.index');
     })->middleware(['role:admin|pengguna']);

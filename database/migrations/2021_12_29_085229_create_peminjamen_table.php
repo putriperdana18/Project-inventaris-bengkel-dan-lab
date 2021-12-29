@@ -20,8 +20,10 @@ class CreatePeminjamenTable extends Migration
             $table->string('no_tlp');
             $table->integer('jumlah');
             $table->BigInteger('id_barang')->unsigned();
+            $table->string('Merek');
             $table->date('tgl_pinjam');
             $table->date('tgl_kembali');
+            $table->foreign('id_barang')->references('id')->on('stoks');
             $table->timestamps();
         });
     }

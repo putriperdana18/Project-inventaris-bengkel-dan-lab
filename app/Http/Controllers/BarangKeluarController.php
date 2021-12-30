@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barangkeluar;
+use App\Models\Stok;
 use Illuminate\Http\Request;
 
 class BarangkeluarController extends Controller
@@ -15,8 +16,8 @@ class BarangkeluarController extends Controller
     public function index()
     {
         //
-         $barangkeluars = Barangkeluar::with('stok')->get();
-        return view('barangkeluar.index', compact('barangkeluars'));
+        $barangkeluars = Barangkeluar::with('stok')->get();
+        return view('admin.barangkeluar.index', compact('barangkeluars'));
     }
 
     /**
@@ -28,7 +29,7 @@ class BarangkeluarController extends Controller
     {
         //
         $stok = Stok::all();
-        return view('barangkeluar.create', compact('stok'));
+        return view('admin.barangkeluar.create', compact('stok'));
     }
 
     /**
@@ -57,7 +58,7 @@ class BarangkeluarController extends Controller
         $barangkeluar->Merek = $request->Merek;
         $barangkeluar->kondisi = $request->kondisi;
         $barangkeluar->save();
-        return redirect()->route('barangkeluar.index');
+        return redirect()->route('barangkeluars.index');
     }
 
     /**
@@ -70,7 +71,7 @@ class BarangkeluarController extends Controller
     {
         //
         $barangkeluar = Barangkeluar::findOrFail($id);
-        return view('barangkeluar.show', compact('barangkeluar'));
+        return view('admin.barangkeluar.show', compact('barangkeluar'));
 
     }
 
@@ -85,7 +86,7 @@ class BarangkeluarController extends Controller
         //
         $barangkeluar = Barangkeluar::findOrFail($id);
         $stok = Stok::all();
-        return view('barangkeluar.edit', compact('barangkeluar', 'stok'));
+        return view('admin.barangkeluar.edit', compact('barangkeluar', 'stok'));
     }
 
     /**

@@ -16,7 +16,7 @@ class BarangmasukController extends Controller
     {
         //
         $barangmasuks = Barangmasuk::with('stok')->get();
-        return view('barangmasuk.index', compact('barangmasuks'));
+        return view('admin.barangmasuk.index', compact('barangmasuks'));
     }
 
     /**
@@ -28,7 +28,7 @@ class BarangmasukController extends Controller
     {
         //
         $stok = Stok::all();
-        return view('barangmasuk.create', compact('stok'));
+        return view('admin.barangmasuk.create', compact('stok'));
     }
 
     /**
@@ -48,6 +48,7 @@ class BarangmasukController extends Controller
             'jumlah_barang' => 'required',
             'tgl_masuk' => 'required',
             'kondisi' => 'required',
+            'keterangan' => 'required',
         ]);
 
         $barangmasuk = new Barangmasuk;
@@ -57,8 +58,9 @@ class BarangmasukController extends Controller
         $barangmasuk->kategori_barang = $request->kategori_barang;
         $barangmasuk->Merek = $request->Merek;
         $barangmasuk->kondisi = $request->kondisi;
+        $barangmasuk->keterangan = $request->keterangan;
         $barangmasuk->save();
-        return redirect()->route('barangmasuk.index');
+        return redirect()->route('barangmasuks.index');
     }
 
     /**
@@ -71,7 +73,7 @@ class BarangmasukController extends Controller
     {
         //
         $barangmasuk = Barangmasuk::findOrFail($id);
-        return view('barangmasuk.show', compact('barangmasuk'));
+        return view('admin.barangmasuk.show', compact('barangmasuk'));
     }
 
     /**
@@ -85,7 +87,7 @@ class BarangmasukController extends Controller
         //
         $barangmasuk = Barangmasuk::findOrFail($id);
         $stok = Stok::all();
-        return view('barangmasuk.edit', compact('barangmasuk', 'stok'));
+        return view('admin.barangmasuk.edit', compact('barangmasuk', 'stok'));
     }
 
     /**
@@ -114,6 +116,7 @@ class BarangmasukController extends Controller
         $barangmasuk->tgl_masuk = $request->tgl_masuk;
         $barangmasuk->kategori_barang = $request->kategori_barang;
         $barangmasuk->kondisi = $request->kondisi;
+        $barangmasuk->keterangan = $request->keterangan;
         $barangmasuk->save();
         return redirect()->route('barangmasuks.index');
     }

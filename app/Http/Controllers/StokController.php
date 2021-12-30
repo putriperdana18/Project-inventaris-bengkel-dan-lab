@@ -16,7 +16,7 @@ class StokController extends Controller
     {
         //
          $stok = Stok::all();
-        return view('stok.index', compact('stok'));
+        return view('admin.stok.index', compact('stok'));
     }
 
     /**
@@ -27,7 +27,7 @@ class StokController extends Controller
     public function create()
     {
         //
-        return view('stok.create');
+        return view('admin.stok.create');
     }
 
     /**
@@ -53,9 +53,14 @@ class StokController extends Controller
         $stok = new Stok;
         $stok->nama_barang = $request->nama_barang;
         $stok->kategori_barang = $request->kategori_barang;
+        $stok->merek = $request->merek;
         $stok->stokasal = $request->stokasal;
+        $stok->jumlahbarangmasuk = $request->jumlahbarangmasuk;
+        $stok->jumblahbarangkeluar = $request->jumblahbarangkeluar;
+        $stok->peminjaman = $request->peminjaman;
+        $stok->jumblahstok = $request->jumblahstok;
         $stok->save();
-        return redirect()->route('author.index');
+        return redirect()->route('admin.stok.index');
     }
 
     /**
@@ -64,9 +69,11 @@ class StokController extends Controller
      * @param  \App\Models\Stok  $stok
      * @return \Illuminate\Http\Response
      */
-    public function show(Stok $stok)
+    public function show($id)
     {
         //
+        $stok = Stok::findOrFail($id);
+        return view('admin.stok.edit', compact('stok'));
     }
 
     /**
@@ -75,9 +82,11 @@ class StokController extends Controller
      * @param  \App\Models\Stok  $stok
      * @return \Illuminate\Http\Response
      */
-    public function edit(Stok $stok)
+    public function edit($id)
     {
         //
+        $stok = Stok::findOrFail($id);
+        return view('admin.stok.edit', compact('stok'));
     }
 
     /**
@@ -87,9 +96,31 @@ class StokController extends Controller
      * @param  \App\Models\Stok  $stok
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Stok $stok)
+    public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'nama_barang' => 'required',
+            'kategori_barang' => 'required',
+            'merek' => 'required',
+            'stokasal' => 'required',
+            'jumlahbarangmasuk' => 'required',
+            'jumblahbarangkeluar' => 'required',
+            'peminjaman' => 'required',
+            'jumblahstok' => 'required',
+        ]);
+
+       $stok = new Stok;
+        $stok->nama_barang = $request->nama_barang;
+        $stok->kategori_barang = $request->kategori_barang;
+        $stok->stokasal = $request->stokasal;
+        $stok->jumlahbarangmasuk = $request->jumlahbarangmasuk;
+        $stok->jumblahbarangkeluar = $request->jumblahbarangkeluar;
+        $stok->peminjaman = $request->peminjaman;
+        $stok->jumblahstok = $request->jumblahstok;
+        $stok->save();
+        return redirect()->route('author.index');
+
     }
 
     /**
@@ -98,8 +129,11 @@ class StokController extends Controller
      * @param  \App\Models\Stok  $stok
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Stok $stok)
+    public function destroy($id)
     {
         //
+        $stok = Stok::findOrFail($id);
+        $stok->delete();
+        return redirect()->route('admin.stok.index');
     }
 }

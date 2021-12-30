@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Barangkeluar extends Model
 {
     use HasFactory;
+    protected $visible = ['id_barang','jumlah','tgl_keluar','kategori_barang','Merek','kondisi'];
+    protected $fillable = ['id_barang','jumlah','tgl_keluar','kategori_barang','Merek','kondisi'];
+    public $timestamps = true;
+
 }

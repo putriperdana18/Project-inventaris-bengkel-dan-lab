@@ -15,6 +15,8 @@ class PeminjamanController extends Controller
     public function index()
     {
         //
+         $peminjamans = Peminjaman::with('stok')->get();
+        return view('admin.peminjaman.index', compact('peminjamans'));
     }
 
     /**
@@ -25,6 +27,8 @@ class PeminjamanController extends Controller
     public function create()
     {
         //
+        $stok = Stok::all();
+        return view('admin.peminjaman.create', compact('stok'));
     }
 
     /**
@@ -36,6 +40,27 @@ class PeminjamanController extends Controller
     public function store(Request $request)
     {
         //
+         $request->validate([
+            'peminjam' => 'required',
+            'jk' => 'required',
+            'no_tlp' => 'required',
+            'jumlah' => 'required',
+            'id_barang' => 'required',
+            'Merek' => 'required',
+            'tgl_pinjam' => 'required',
+            'tgl_kembali' => 'required',
+        ]);
+
+        $peminjaman = new Peminjaman;
+        $peminjaman->peminjam = $request->peminjam;
+        $peminjaman->jk = $request->jk;
+        $peminjaman->no_tlp = $request->no_tlp;
+        $peminjaman->jumlah = $request->jumlah;
+        $peminjaman->Merek = $request->Merek;
+        $peminjaman->tgl_pinjam = $request->tgl_pinjam;
+        $peminjaman->tgl_kembali = $request->tgl_kembali;
+        $peminjaman->save();
+        return redirect()->route('peminjamans.index');
     }
 
     /**
@@ -44,9 +69,11 @@ class PeminjamanController extends Controller
      * @param  \App\Models\Peminjaman  $peminjaman
      * @return \Illuminate\Http\Response
      */
-    public function show(Peminjaman $peminjaman)
+    public function show($id)
     {
         //
+         $peminjaman = Peminjaman::findOrFail($id);
+        return view('admin.peminjaman.show', compact('peminjaman'));
     }
 
     /**
@@ -55,9 +82,12 @@ class PeminjamanController extends Controller
      * @param  \App\Models\Peminjaman  $peminjaman
      * @return \Illuminate\Http\Response
      */
-    public function edit(Peminjaman $peminjaman)
+    public function edit($id)
     {
         //
+        $peminjaman = Peminjaman::findOrFail($id);
+        $stok = Stok::all();
+        return view('admin.peminjaman.edit', compact('peminjaman', 'stok'));
     }
 
     /**
@@ -67,9 +97,30 @@ class PeminjamanController extends Controller
      * @param  \App\Models\Peminjaman  $peminjaman
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Peminjaman $peminjaman)
+    public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'peminjam' => 'required',
+            'jk' => 'required',
+            'no_tlp' => 'required',
+            'jumlah' => 'required',
+            'id_barang' => 'required',
+            'Merek' => 'required',
+            'tgl_pinjam' => 'required',
+            'tgl_kembali' => 'required',
+        ]);
+
+        $peminjaman = new Peminjaman;
+        $peminjaman->peminjam = $request->peminjam;
+        $peminjaman->jk = $request->jk;
+        $peminjaman->no_tlp = $request->no_tlp;
+        $peminjaman->jumlah = $request->jumlah;
+        $peminjaman->Merek = $request->Merek;
+        $peminjaman->tgl_pinjam = $request->tgl_pinjam;
+        $peminjaman->tgl_kembali = $request->tgl_kembali;
+        $peminjaman->save();
+        return redirect()->route('peminjamans.index');
     }
 
     /**
@@ -81,5 +132,8 @@ class PeminjamanController extends Controller
     public function destroy(Peminjaman $peminjaman)
     {
         //
+        $peminjaman = Peminjaman::findOrFail($id);
+        $peminjaman->delete();
+        return redirect()->route('peminjamans.index');
     }
 }

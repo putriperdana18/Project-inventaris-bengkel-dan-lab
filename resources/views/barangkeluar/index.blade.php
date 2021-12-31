@@ -35,7 +35,7 @@ Halaman Barang Keluar
                                     <th>Action</th>
                                 </tr>
                                 @php $no=1; @endphp
-                                @foreach ($barangkeluars as $data)
+                                @foreach ($barangkeluar as $data)
                                     <tr>
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $data->stok->nama_barang() }}</td>
@@ -45,12 +45,12 @@ Halaman Barang Keluar
                                         <td>{{ $data->Merek }}</td>
                                         <td>{{ $data->kondisi }}</td>
                                         <td>
-                                            <form action="{{ route('barangkeluars.destroy', $data->id) }}" method="post">
+                                            <form action="{{ route('barangkeluar.destroy', $data->id) }}" method="post">
                                                 @method('delete')
                                                 @csrf
-                                                <a href="{{ route('barangkeluars.edit', $data->id) }}"
+                                                <a href="{{ route('barangkeluar.edit', $data->id) }}"
                                                     class="btn btn-outline-info">Edit</a>
-                                                <a href="{{ route('barangkeluars.show', $data->id) }}"
+                                                <a href="{{ route('barangkeluar.show', $data->id) }}"
                                                     class="btn btn-outline-warning">Show</a>
                                                 <button type="submit" class="btn btn-outline-danger"
                                                     onclick="return confirm('Are you sure?');">Delete</button>

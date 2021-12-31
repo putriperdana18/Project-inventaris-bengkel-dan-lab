@@ -9,9 +9,9 @@ class Stok extends Model
 {
     use HasFactory;
     protected $visible = ['nama_barang','kategori_barang', 'merek', 'stokasal', 
-    'jumlahbarangmasuk', 'jumblahbarantgkeluar', 'peminjaman', 'jumblahstok'];
+    'jumlahbarangmasuk', 'jumblahbarangkeluar', 'peminjaman', 'jumblahstok'];
     protected $fillable = ['nama_barang','kategori_barang', 'merek', 'stokasal', 
-    'jumlahbarangmasuk', 'jumblahbarantgkeluar', 'peminjaman', 'jumblahstok'];
+    'jumlahbarangmasuk', 'jumblahbarangkeluar', 'peminjaman', 'jumblahstok'];
     public $timestamps = true;
 
      public function barangkeluar()

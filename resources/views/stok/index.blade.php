@@ -44,7 +44,7 @@ Halaman Barang
                                         <td>{{ $data->kategori_barang }}</td>
                                         <td>{{ $data->merek }}</td>
                                         <td>{{ $data->stokasal }}</td>
-                                        <td>{{ $data->jumblahbarangmasuk }}</td>
+                                        <td>{{ $data->jumlahbarangmasuk }}</td>
                                         <td>{{ $data->jumblahbarangkeluar }}</td>
                                         <td>{{ $data->peminjaman }}</td>
                                         <td>{{ $data->jumblahstok }}</td>

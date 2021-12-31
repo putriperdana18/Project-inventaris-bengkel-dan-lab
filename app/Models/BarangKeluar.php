@@ -11,5 +11,8 @@ class Barangkeluar extends Model
     protected $visible = ['id_barang','jumlah','tgl_keluar','kategori_barang','Merek','kondisi'];
     protected $fillable = ['id_barang','jumlah','tgl_keluar','kategori_barang','Merek','kondisi'];
     public $timestamps = true;
-
+    public function stok()
+    {
+        return $this->belongsTo('App\Models\Stok', 'id_barang');
+    }
 }

@@ -16,7 +16,7 @@ class BarangmasukController extends Controller
     {
         //
         $barangmasuks = Barangmasuk::with('stok')->get();
-        return view('admin.barangmasuk.index', compact('barangmasuks'));
+        return view('barangmasuk.index', compact('barangmasuks'));
     }
 
     /**
@@ -28,7 +28,7 @@ class BarangmasukController extends Controller
     {
         //
         $stok = Stok::all();
-        return view('admin.barangmasuk.create', compact('stok'));
+        return view('barangmasuk.create', compact('stok'));
     }
 
     /**
@@ -60,7 +60,7 @@ class BarangmasukController extends Controller
         $barangmasuk->kondisi = $request->kondisi;
         $barangmasuk->keterangan = $request->keterangan;
         $barangmasuk->save();
-        return redirect()->route('barangmasuks.index');
+        return redirect()->route('barangmasuk.index');
     }
 
     /**
@@ -73,7 +73,7 @@ class BarangmasukController extends Controller
     {
         //
         $barangmasuk = Barangmasuk::findOrFail($id);
-        return view('admin.barangmasuk.show', compact('barangmasuk'));
+        return view('barangmasuk.show', compact('barangmasuk'));
     }
 
     /**
@@ -87,7 +87,7 @@ class BarangmasukController extends Controller
         //
         $barangmasuk = Barangmasuk::findOrFail($id);
         $stok = Stok::all();
-        return view('admin.barangmasuk.edit', compact('barangmasuk', 'stok'));
+        return view('barangmasuk.edit', compact('barangmasuk', 'stok'));
     }
 
     /**

@@ -15,8 +15,10 @@ class PeminjamanController extends Controller
     public function index()
     {
         //
-         $peminjamans = Peminjaman::with('stok')->get();
-        return view('admin.peminjaman.index', compact('peminjamans'));
+
+        $peminjaman = Peminjaman::all();
+        // dd($peminjaman);
+        return view('peminjaman.index', compact('peminjaman'));
     }
 
     /**
@@ -28,7 +30,7 @@ class PeminjamanController extends Controller
     {
         //
         $stok = Stok::all();
-        return view('admin.peminjaman.create', compact('stok'));
+        return view('peminjaman.create', compact('stok'));
     }
 
     /**
@@ -73,7 +75,7 @@ class PeminjamanController extends Controller
     {
         //
          $peminjaman = Peminjaman::findOrFail($id);
-        return view('admin.peminjaman.show', compact('peminjaman'));
+        return view('peminjaman.show', compact('peminjaman'));
     }
 
     /**
@@ -87,7 +89,7 @@ class PeminjamanController extends Controller
         //
         $peminjaman = Peminjaman::findOrFail($id);
         $stok = Stok::all();
-        return view('admin.peminjaman.edit', compact('peminjaman', 'stok'));
+        return view('peminjaman.edit', compact('peminjaman', 'stok'));
     }
 
     /**
@@ -120,7 +122,7 @@ class PeminjamanController extends Controller
         $peminjaman->tgl_pinjam = $request->tgl_pinjam;
         $peminjaman->tgl_kembali = $request->tgl_kembali;
         $peminjaman->save();
-        return redirect()->route('peminjamans.index');
+        return redirect()->route('peminjaman.index');
     }
 
     /**
@@ -134,6 +136,6 @@ class PeminjamanController extends Controller
         //
         $peminjaman = Peminjaman::findOrFail($id);
         $peminjaman->delete();
-        return redirect()->route('peminjamans.index');
+        return redirect()->route('peminjaman.index');
     }
 }

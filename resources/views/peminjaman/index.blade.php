@@ -13,7 +13,7 @@ Halaman Barang Masuk
                 <div class="card">
                     <div class="card-header">
                         Data Barang Masuk
-                        <a href="{{ route('barangmasuk.create') }}" class="btn btn-sm btn-outline-primary"
+                        <a href="{{ route('peminjaman.create') }}" class="btn btn-sm btn-outline-primary"
                             style="float: right">Add
                             Barang Masuk</a>
                     </div>
@@ -33,7 +33,7 @@ Halaman Barang Masuk
                                     <th>Action</th>
                                 </tr>
                                 @php $no=1; @endphp
-                                @foreach ($peminjamans as $data)
+                                @foreach ($peminjaman as $data)
                                     <tr>
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $data->peminjaman }}</td>
@@ -46,12 +46,12 @@ Halaman Barang Masuk
                                         <td>{{ $data->tgl_kembali }}</td>
                                         <td>{{ $data->keterangan}}</td>
                                         <td>
-                                            <form action="{{ route('barangmasuks.destroy', $data->id) }}" method="post">
+                                            <form action="{{ route('peminjaman.destroy', $data->id) }}" method="post">
                                                 @method('delete')
                                                 @csrf
-                                                <a href="{{ route('barangmasuks.edit', $data->id) }}"
+                                                <a href="{{ route('peminjaman.edit', $data->id) }}"
                                                     class="btn btn-outline-info">Edit</a>
-                                                <a href="{{ route('barangmasuks.show', $data->id) }}"
+                                                <a href="{{ route('peminjaman.show', $data->id) }}"
                                                     class="btn btn-outline-warning">Show</a>
                                                 <button type="submit" class="btn btn-outline-danger"
                                                     onclick="return confirm('Are you sure?');">Delete</button>

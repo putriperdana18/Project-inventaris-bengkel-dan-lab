@@ -16,8 +16,8 @@ class BarangkeluarController extends Controller
     public function index()
     {
         //
-        $barangkeluars = Barangkeluar::with('stok')->get();
-        return view('admin.barangkeluar.index', compact('barangkeluars'));
+        $barangkeluar = Barangkeluar::with('stok')->get();
+        return view('barangkeluar.index', compact('barangkeluar'));
     }
 
     /**
@@ -29,7 +29,7 @@ class BarangkeluarController extends Controller
     {
         //
         $stok = Stok::all();
-        return view('admin.barangkeluar.create', compact('stok'));
+        return view('barangkeluar.create', compact('stok'));
     }
 
     /**
@@ -58,7 +58,7 @@ class BarangkeluarController extends Controller
         $barangkeluar->Merek = $request->Merek;
         $barangkeluar->kondisi = $request->kondisi;
         $barangkeluar->save();
-        return redirect()->route('barangkeluars.index');
+        return redirect()->route('barangkeluar.index');
     }
 
     /**
@@ -71,7 +71,7 @@ class BarangkeluarController extends Controller
     {
         //
         $barangkeluar = Barangkeluar::findOrFail($id);
-        return view('admin.barangkeluar.show', compact('barangkeluar'));
+        return view('barangkeluar.show', compact('barangkeluar'));
 
     }
 
@@ -86,7 +86,7 @@ class BarangkeluarController extends Controller
         //
         $barangkeluar = Barangkeluar::findOrFail($id);
         $stok = Stok::all();
-        return view('admin.barangkeluar.edit', compact('barangkeluar', 'stok'));
+        return view('barangkeluar.edit', compact('barangkeluar', 'stok'));
     }
 
     /**
@@ -115,7 +115,7 @@ class BarangkeluarController extends Controller
         $barangkeluar->kategori_barang = $request->kategori_barang;
         $barangkeluar->kondisi = $request->kondisi;
         $barangkeluar->save();
-        return redirect()->route('barangkeluars.index');
+        return redirect()->route('barangkeluar.index');
 
     }
 
@@ -130,6 +130,6 @@ class BarangkeluarController extends Controller
         //
         $barangkeluar = Barangkeluar::findOrFail($id);
         $barangkeluar->delete();
-        return redirect()->route('barangkeluars.index');
+        return redirect()->route('barangkeluar.index');
     }
 }

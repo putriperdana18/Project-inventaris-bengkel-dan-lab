@@ -16,7 +16,7 @@ class StokController extends Controller
     {
         //
          $stok = Stok::all();
-        return view('admin.stok.index', compact('stok'));
+        return view('stok.index', compact('stok'));
     }
 
     /**
@@ -27,7 +27,7 @@ class StokController extends Controller
     public function create()
     {
         //
-        return view('admin.stok.create');
+        return view('stok.create');
     }
 
     /**
@@ -44,9 +44,9 @@ class StokController extends Controller
             'kategori_barang' => 'required',
             'merek' => 'required',
             'stokasal' => 'required',
-            'jumlahbarangmasuk' => 'required',
-            'jumblahbarangkeluar' => 'required',
-            'peminjaman' => 'required',
+            'jumlahbarangmasuk',
+            'jumblahbarangkeluar',
+            'peminjaman',
             'jumblahstok' => 'required',
         ]);
 
@@ -60,7 +60,7 @@ class StokController extends Controller
         $stok->peminjaman = $request->peminjaman;
         $stok->jumblahstok = $request->jumblahstok;
         $stok->save();
-        return redirect()->route('admin.stok.index');
+        return redirect()->route('stok.index');
     }
 
     /**
@@ -73,7 +73,7 @@ class StokController extends Controller
     {
         //
         $stok = Stok::findOrFail($id);
-        return view('admin.stok.edit', compact('stok'));
+        return view('stok.edit', compact('stok'));
     }
 
     /**
@@ -86,7 +86,7 @@ class StokController extends Controller
     {
         //
         $stok = Stok::findOrFail($id);
-        return view('admin.stok.edit', compact('stok'));
+        return view('stok.edit', compact('stok'));
     }
 
     /**
@@ -103,23 +103,24 @@ class StokController extends Controller
             'nama_barang' => 'required',
             'kategori_barang' => 'required',
             'merek' => 'required',
-            'stokasal' => 'required',
-            'jumlahbarangmasuk' => 'required',
-            'jumblahbarangkeluar' => 'required',
-            'peminjaman' => 'required',
+            'stokasal',
+            'jumlahbarangmasuk',
+            'jumblahbarangkeluar',
+            'peminjaman',
             'jumblahstok' => 'required',
         ]);
 
-       $stok = new Stok;
+        $stok =Stok::findOrFail($id);
         $stok->nama_barang = $request->nama_barang;
         $stok->kategori_barang = $request->kategori_barang;
+        $stok->merek = $request->merek;
         $stok->stokasal = $request->stokasal;
         $stok->jumlahbarangmasuk = $request->jumlahbarangmasuk;
         $stok->jumblahbarangkeluar = $request->jumblahbarangkeluar;
         $stok->peminjaman = $request->peminjaman;
         $stok->jumblahstok = $request->jumblahstok;
         $stok->save();
-        return redirect()->route('author.index');
+        return redirect()->route('stok.index');
 
     }
 
@@ -134,6 +135,6 @@ class StokController extends Controller
         //
         $stok = Stok::findOrFail($id);
         $stok->delete();
-        return redirect()->route('admin.stok.index');
+        return redirect()->route('stok.index');
     }
 }

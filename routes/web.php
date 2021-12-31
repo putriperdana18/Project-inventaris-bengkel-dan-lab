@@ -69,40 +69,19 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //     Route::get('pengarang', function(){
 //         return view ('pengarang.index');
-//     })->middleware(['role:admin']);
+//     });
 // });
-Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
-Route::get('stok', function(){
+Route::group(['prefix' => 'admin', 'middleware' => ['auth','role:admin']], function(){
+    Route::get('/',function(){
+        return view('home');
+    });
+    Route::get('stok', function(){
         return view('stok.index');
-    })->middleware(['role:admin']);
-
-    Route::resource('stok', StokController::class);
-    }); 
-
-   Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
-    Route::get('barangmasuk', function(){
-        return view('barangmasuk.index');
-    })->middleware(['role:admin']);
-
-    Route::resource('barangmasuk', BarangmasukController::class);
-
     });
-
-    Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
-    Route::get('barangkeluar', function(){
-        return view('barangkeluar.index');
-    })->middleware(['role:admin']);
-
-    Route::resource('barangkeluar', BarangkeluarController::class);
-
-    });
-
-     Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
-    Route::get('peminjaman', function(){
-        return view('peminjaman.index');
-    })->middleware(['role:admin']);
-
+    
     Route::resource('peminjaman', PeminjamanController::class);
+    Route::resource('stok', StokController::class);
+}); 
 
-    });
+   
     

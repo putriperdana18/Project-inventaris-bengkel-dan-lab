@@ -38,7 +38,7 @@ Halaman Barang Keluar
                                 @foreach ($barangkeluar as $data)
                                     <tr>
                                         <td>{{ $no++ }}</td>
-                                        <td>{{ $data->stok->nama_barang() }}</td>
+                                        <td>{{ $data->stok->nama_barang }}</td>
                                         <td>{{ $data->jumlah }}</td>
                                         <td>{{ $data->tgl_keluar }}</td>
                                         <td>{{ $data->kategori_barang }}</td>

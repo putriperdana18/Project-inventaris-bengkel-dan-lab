@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barangmasuk;
+use App\Models\Stok;
 use Illuminate\Http\Request;
 
 class BarangmasukController extends Controller
@@ -15,8 +16,8 @@ class BarangmasukController extends Controller
     public function index()
     {
         //
-        $barangmasuks = Barangmasuk::with('stok')->get();
-        return view('barangmasuk.index', compact('barangmasuks'));
+        $barangmasuk = Barangmasuk::all();
+        return view('barangmasuk.index', compact('barangmasuk'));
     }
 
     /**
@@ -39,10 +40,9 @@ class BarangmasukController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
          $request->validate([
             'id_barang' => 'required',
-            'nama_barang' => 'required',
             'kategori_barang' => 'required',
             'Merek' => 'required',
             'jumlah_barang' => 'required',
@@ -53,7 +53,7 @@ class BarangmasukController extends Controller
 
         $barangmasuk = new Barangmasuk;
         $barangmasuk->id_barang = $request->id_barang;
-        $barangmasuk->jumlah = $request->jumlah;
+        $barangmasuk->jumlah_barang = $request->jumlah_barang;
         $barangmasuk->tgl_masuk = $request->tgl_masuk;
         $barangmasuk->kategori_barang = $request->kategori_barang;
         $barangmasuk->Merek = $request->Merek;
@@ -102,7 +102,6 @@ class BarangmasukController extends Controller
         //
          $request->validate([
             'id_barang' => 'required',
-            'nama_barang' => 'required',
             'kategori_barang' => 'required',
             'Merek' => 'required',
             'jumlah_barang' => 'required',
@@ -112,13 +111,13 @@ class BarangmasukController extends Controller
 
         $barangmasuk = Barangmasuk::findOrFail($id);
         $barangmasuk->id_barang = $request->id_barang;
-        $barangmasuk->jumlah = $request->jumlah;
+        $barangmasuk->jumlah_barang = $request->jumlah_barang;
         $barangmasuk->tgl_masuk = $request->tgl_masuk;
         $barangmasuk->kategori_barang = $request->kategori_barang;
         $barangmasuk->kondisi = $request->kondisi;
         $barangmasuk->keterangan = $request->keterangan;
         $barangmasuk->save();
-        return redirect()->route('barangmasuks.index');
+        return redirect()->route('barangmasuk.index');
     }
 
     /**
@@ -132,6 +131,6 @@ class BarangmasukController extends Controller
         //
         $barangmasuk = Barangmasuk::findOrFail($id);
         $barangmasuk->delete();
-        return redirect()->route('barangmasuks.index');
+        return redirect()->route('barangmasuk.index');
     }
 }

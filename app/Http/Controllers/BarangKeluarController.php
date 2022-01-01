@@ -16,7 +16,7 @@ class BarangkeluarController extends Controller
     public function index()
     {
         //
-        $barangkeluar = Barangkeluar::with('stok')->get();
+        $barangkeluar = Barangkeluar::all();
         return view('barangkeluar.index', compact('barangkeluar'));
     }
 
@@ -40,7 +40,7 @@ class BarangkeluarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
          $request->validate([
             'id_barang' => 'required',
             'jumlah' => 'required',

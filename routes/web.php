@@ -75,11 +75,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','role:admin']], funct
     Route::get('/',function(){
         return view('home');
     });
-    Route::get('stok', function(){
-        return view('stok.index');
-    });
-    
+   
     Route::resource('peminjaman', PeminjamanController::class);
+    Route::resource('barangkeluar', BarangkeluarController::class);
+    Route::resource('barangmasuk', BarangmasukController::class);
     Route::resource('stok', StokController::class);
 }); 
 

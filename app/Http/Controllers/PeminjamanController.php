@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Peminjaman;
+use App\Models\Stok;
 use Illuminate\Http\Request;
 
 class PeminjamanController extends Controller
@@ -17,7 +18,6 @@ class PeminjamanController extends Controller
         //
 
         $peminjaman = Peminjaman::all();
-        // dd($peminjaman);
         return view('peminjaman.index', compact('peminjaman'));
     }
 
@@ -62,7 +62,7 @@ class PeminjamanController extends Controller
         $peminjaman->tgl_pinjam = $request->tgl_pinjam;
         $peminjaman->tgl_kembali = $request->tgl_kembali;
         $peminjaman->save();
-        return redirect()->route('peminjamans.index');
+        return redirect()->route('peminjaman.index');
     }
 
     /**

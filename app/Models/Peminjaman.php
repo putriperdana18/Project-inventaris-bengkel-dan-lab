@@ -13,6 +13,7 @@ class Peminjaman extends Model
     protected $fillable = ['peminjaman','jk','no_tlp','jumlah',
     'merek','id_barang','tgl_pinjam','tgl_kembali',];
     public $timestamps = true;
+    
     public function stok()
     {
         return $this->belongsTo('App\Models\Stok', 'id_barang');

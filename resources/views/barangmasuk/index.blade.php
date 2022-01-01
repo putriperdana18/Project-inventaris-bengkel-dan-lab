@@ -27,7 +27,6 @@ Halaman Barang Masuk
                                 <tr>
                                     <th>Nomor</th>
                                     <th>ID Barang</th>
-                                    <th>Nama Barang</th>
                                     <th>Kategori Barang</th>
                                     <th>Merek</th>
                                     <th>Jumblah Barang</th>
@@ -37,11 +36,10 @@ Halaman Barang Masuk
                                     <th>Action</th>
                                 </tr>
                                 @php $no=1; @endphp
-                                @foreach ($barangmasuks as $data)
+                                @foreach ($barangmasuk as $data)
                                     <tr>
                                         <td>{{ $no++ }}</td>
-                                        <td>{{ $data->stok->id_barang() }}</td>
-                                        <td>{{ $data->stok->nama_barang() }}</td> 
+                                        <td>{{ $data->stok->nama_barang }}</td>
                                         <td>{{ $data->kategori_barang }}</td>
                                         <td>{{ $data->Merek }}</td>
                                         <td>{{ $data->jumlah_barang }}</td>
